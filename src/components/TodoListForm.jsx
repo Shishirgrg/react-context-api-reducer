@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { useTodoContext } from '../context/context'
 import { v4 as uuidv4 } from 'uuid';
 import TodoList from './TodoList'
@@ -6,11 +6,20 @@ import TodoList from './TodoList'
 const TodoListForm = () => {
     const [{}, dispatch] = useTodoContext();
 
-    const inputRef = useRef(null);
+    const inputRef = useRef("");
 
     const [todoData, setTodoData] = useState("");
     const [todoDataTemp, setTodoDataTemp] = useState("");
     // const [todoList, setTodoList] = useState([]);
+
+    useEffect(() =>{
+        inputRef.current.focus();
+
+        return () =>{
+            console.log("Use effect ended!");
+        }
+        
+    }, []);
 
     const changeHandler = (e)=> {
         setTodoData(e.target.value);
@@ -44,16 +53,18 @@ const TodoListForm = () => {
         setTodoData("")
     }
 
+
     const onEditButtonClicked = (editValue) => {
+        inputRef.current.focus();
         setTodoDataTemp(editValue[0]);
-        setTodoData(editValue[0].data)
+        setTodoData(editValue[0].data);
     }
 
     return (
         <>
         <section>
             <form onSubmit={submitHandler}>
-                <input type="text" value={todoData} onChange={changeHandler} />
+                <input ref={inputRef} type="text" value={todoData} onChange={changeHandler} />
             </form>
         </section>
         <TodoList handleInput={onEditButtonClicked} />
