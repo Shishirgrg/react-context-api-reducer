@@ -1,5 +1,5 @@
 export const initialState= {
-    todoList: []
+    todoList: [{id: "1", data: "dummy data"}]
 }
 
 const reducer = (state, action) => {
@@ -19,9 +19,7 @@ const reducer = (state, action) => {
             }
         case "UPDATE_TODO":
             const temp = action.payload;
-            // const updatedTodo = state.todoList.filter((todo) => {
-            //     return todo.id !== temp.id;
-            // })
+            
             const tempArray = state.todoList;
             for (let i = 0; i < tempArray.length; i++) {
                 if(tempArray[i].id === temp.id ){

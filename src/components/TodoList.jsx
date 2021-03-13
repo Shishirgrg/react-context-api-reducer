@@ -1,41 +1,83 @@
 import React from "react";
-import { useTodoContext } from '../context/context'
+import { useTodoContext } from "../context/context";
+import {
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+  ListItemSecondaryAction,
+  IconButton,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 
-const TodoList = ({handleInput}) => {
+import "../app.css";
+
+import FormatListBulletedSharpIcon from "@material-ui/icons/FormatListBulletedSharp";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+
+const TodoList = ({ handleInput }) => {
   const [{ todoList }, dispatch] = useTodoContext();
 
-  const deleteTodo = (id)=> {
+  const deleteTodo = (id) => {
     // console.log(`Deleted todo with id: ${id}`);
     dispatch({
       type: "DELETE_TODO",
       payload: id,
-    })
-  }
+    });
+  };
 
-  const onEditButtonClicked = (id) =>{
+  const onEditButtonClicked = (id) => {
     const toBeEditedTodo = todoList.filter((todo) => {
-      return todo.id === id
-    });   
-    
+      return todo.id === id;
+    });
+
     handleInput(toBeEditedTodo);
-  }
+  };
 
-
-
-  // console.log(todoList);
   return (
     <section>
       {todoList.length <= 0 ? (
-        <h1>There is nothing in the list please enter some data</h1>
+        <>
+          <Typography variant="h5" className="app_heading">
+            There is nothing in your todo. Add some todos
+          </Typography>
+        </>
       ) : (
-        <ul>
-          {todoList.map((todo) => (
-            <li key={todo.id}>{todo.data}
-            <span style={{ marginLeft: "30px" }}><button onClick={()=> deleteTodo(todo.id)}>Delete</button></span>
-            <span style={{ marginLeft: "10px" }}><button onClick={()=> onEditButtonClicked(todo.id)}>Edit</button></span>
-            </li>
-          ))}
-        </ul>
+        <div className="list">
+          <Grid item xs={12} md={6}>
+            {todoList.map((todo) => (
+              <List key={todo.id}>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <FormatListBulletedSharpIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={todo.data} />
+                  <ListItemSecondaryAction>
+                    <IconButton
+                      edge="end"
+                      aria-label="delete"
+                      onClick={() => deleteTodo(todo.id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                    <IconButton
+                      edge="end"
+                      aria-label="delete"
+                      onClick={() => onEditButtonClicked(todo.id)}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              </List>
+            ))}
+          </Grid>
+        </div>
       )}
     </section>
   );

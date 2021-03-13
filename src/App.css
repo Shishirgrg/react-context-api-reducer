@@ -8,3 +8,46 @@
 .app > h3 {
   margin-bottom: 10px;
 }
+
+.app_heading {
+  padding: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form > .MuiSvgIcon-root {
+  position: absolute;
+  padding: 5px;
+  color: gray;
+}
+
+.formControl {
+  width: 390px;
+  height: 35px;
+  border-radius: 10px;
+  border: 1px solid black;
+  outline: none;
+  padding-left: 35px;
+  font-size: large;
+}
+
+.formControl::placeholder {
+  text-align: center;
+  font-size: medium;
+}
+
+.list {
+  width: 480px;
+}
+
+.title-underline {
+  height: 0.25rem;
+  width: 6rem;
+  background: hsl(243, 100%, 68%);
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}

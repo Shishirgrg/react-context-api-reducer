@@ -1,5 +1,9 @@
-* {
+*,
+::after,
+::before {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -9,6 +13,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: hsl(210, 36%, 96%);
+  color: hsl(209, 61%, 16%);
+  line-height: 0.5;
 }
 
 code {
