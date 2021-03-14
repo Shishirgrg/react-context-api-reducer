@@ -1,16 +1,20 @@
 export const initialState= {
-    todoList: [{id: "1", data: "dummy data"}]
+    todoList: JSON.parse(localStorage.getItem('todo')) || []
 }
 
 const reducer = (state, action) => {
     switch(action.type){
         case "ADD_TODO":
+            localStorage.setItem('todo', JSON.stringify([action.payload, ...state.todoList]))
             return{
                 ...state,
                 todoList: [action.payload, ...state.todoList]
             }
 
         case "DELETE_TODO":
+            localStorage.setItem('todo', JSON.stringify(state.todoList.filter((todo)=> {
+                return todo.id !== action.payload
+            })))
             return{
                 ...state,
                 todoList: state.todoList.filter((todo)=> {
@@ -27,6 +31,10 @@ const reducer = (state, action) => {
                 }
                 
             }
+
+            localStorage.setItem('todo', JSON.stringify([...tempArray]));
+            console.log([...state.todoList]);
+
             return {
                 ...state,
                 todoList: [...tempArray]

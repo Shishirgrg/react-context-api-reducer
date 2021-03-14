@@ -15,7 +15,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: hsl(210, 36%, 96%);
   color: hsl(209, 61%, 16%);
-  line-height: 0.5;
 }
 
 code {

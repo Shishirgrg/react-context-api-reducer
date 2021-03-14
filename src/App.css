@@ -41,21 +41,13 @@
 }
 
 .list {
-  width: 980px;
-  margin-left: 480px;
-  margin-right: 0px;
+  width: 600px;
+  /* margin-left: 480px; */
 }
 
-.MuiGrid-grid-xs-12 {
+/* .MuiGrid-grid-xs-12 {
   max-width: 100%;
-}
-
-@media only screen and (max-width: 1055px) {
-  .list {
-    width: 600px;
-    margin-right: 450px;
-  }
-}
+} */
 
 .title-underline {
   height: 0.25rem;

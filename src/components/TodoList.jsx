@@ -19,7 +19,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
 const TodoList = ({ handleInput }) => {
-  const [{ todoList }, dispatch] = useTodoContext();
+  const [{ todoList: td }, dispatch] = useTodoContext();
+  const todoList = JSON.parse(localStorage.getItem("todo")) || [];
 
   const deleteTodo = (id) => {
     // console.log(`Deleted todo with id: ${id}`);
@@ -47,7 +48,7 @@ const TodoList = ({ handleInput }) => {
         </>
       ) : (
         <div className="list">
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             {todoList.map((todo) => (
               <List key={todo.id}>
                 <ListItem>

@@ -7,7 +7,7 @@ import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 import "../app.css";
 
 const TodoListForm = () => {
-  const [{}, dispatch] = useTodoContext();
+  const [{ todoList }, dispatch] = useTodoContext();
 
   const inputRef = useRef("");
 
